@@ -9,23 +9,25 @@ app.use(morgan("dev"));
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.json({ message: "Bievenue sur le serveur de MARVEL" });
+  res.json({ message: "Bienvenue sur le serveur de MARVEL" });
 });
 
 app.get("/comics", (req, res) => {
-  axios
-    .get(
-      "https://lereacteur-marvel-api.herokuapp.com/comics?" +
-        process.env.API_KEY
-    )
-    .then((response) => {
-      let validData = response.data;
-      res.json({ validData });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  res.json({ message: "Bienvenue sur le serveur de MARVEL" });
 });
+//   axios
+//     .get(
+//       "https://lereacteur-marvel-api.herokuapp.com/comics?" +
+//         process.env.API_KEY
+//     )
+//     .then((response) => {
+//       let validData = response.data;
+//       res.json({ validData });
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// });
 
 app.get("/characters", (req, res) => {
   axios
