@@ -13,21 +13,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/comics", (req, res) => {
-  res.json({ message: "Test page comics" });
+  axios
+    .get(
+      "https://lereacteur-marvel-api.herokuapp.com/comics?" +
+        process.env.API_KEY
+    )
+    .then((response) => {
+      let validData = response.data;
+      res.json({ validData });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 });
-//   axios
-//     .get(
-//       "https://lereacteur-marvel-api.herokuapp.com/comics?" +
-//         process.env.API_KEY
-//     )
-//     .then((response) => {
-//       let validData = response.data;
-//       res.json({ validData });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// });
 
 app.get("/characters", (req, res) => {
   axios
