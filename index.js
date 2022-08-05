@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/comics", (req, res) => {
-  res.json({ message: "Bienvenue sur le serveur de MARVEL" });
+  res.json({ message: "Test page comics" });
 });
 //   axios
 //     .get(
