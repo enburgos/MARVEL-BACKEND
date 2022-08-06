@@ -3,6 +3,7 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const morgan = require("morgan");
+const API_KEY = process.env.API_KEY;
 
 const app = express();
 app.use(morgan("dev"));
@@ -14,16 +15,14 @@ app.get("/", (req, res) => {
 
 app.get("/comics", (req, res) => {
   axios
-    .get(
-      "https://lereacteur-marvel-api.herokuapp.com/comics?" +
-        process.env.API_KEY
-    )
+    .get("https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=" + API_KEY)
     .then((response) => {
       let validData = response.data;
       res.json({ validData });
     })
     .catch((error) => {
-      console.log(error);
+      console.error(error);
+      res.status(500).json({ message: "erreur mon ti pere" });
     });
 });
 
