@@ -29,8 +29,7 @@ app.get("/comics", (req, res) => {
 app.get("/characters", (req, res) => {
   axios
     .get(
-      "https://lereacteur-marvel-api.herokuapp.com/characters?" +
-        process.env.API_KEY
+      "https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=" + API_KEY
     )
     .then((response) => {
       let validData = response.data;
