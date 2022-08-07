@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
 
 app.get("/comics", (req, res) => {
   axios
-    .get("https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=" + API_KEY)
+    .get(`https://lereacteur-marvel-api.herokuapp.com/comics?apiKey=${API_KEY}`)
     .then((response) => {
       let validData = response.data;
       res.json({ validData });
@@ -29,7 +29,7 @@ app.get("/comics", (req, res) => {
 app.get("/characters", (req, res) => {
   axios
     .get(
-      "https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=" + API_KEY
+      `https://lereacteur-marvel-api.herokuapp.com/characters?apiKey=${API_KEY}`
     )
     .then((response) => {
       let validData = response.data;
@@ -37,6 +37,41 @@ app.get("/characters", (req, res) => {
     })
     .catch((error) => {
       console.log(error);
+      res.status(500).json({ message: "erreur mon ti pere" });
+    });
+});
+
+app.get("/comics/:id", (req, res) => {
+  console.log(
+    `https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.id}?apiKey=${API_KEY}`
+  );
+  axios
+    .get(
+      `https://lereacteur-marvel-api.herokuapp.com/comics/${req.params.id}?apiKey=${API_KEY}`
+    )
+    .then((response) => {
+      let validData = response.data;
+      console.log(response.data);
+      res.json({ validData });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: "erreur mon ti pere" });
+    });
+});
+
+app.get("/characters/:id", (req, res) => {
+  axios
+    .get(
+      `https://lereacteur-marvel-api.herokuapp.com/characters/${req.params.id}?apiKey=${API_KEY}`
+    )
+    .then((response) => {
+      let validData = response.data;
+      res.json({ validData });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: "erreur mon ti pere" });
     });
 });
 
